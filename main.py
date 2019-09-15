@@ -10,27 +10,27 @@ summonername = "Der KAX 59"
 
 me = watcher.summoner.by_name(my_region , 'Der KAX 59')
 
-print(me)
-print()
+#print(me)
+#print()
 #print(type(me))
 accountId = me.get("accountId")
-print()
+#print()
 print(accountId)
 print()
 id = me.get("id")
 print(id)
 print()
-print(watcher.league.by_summoner(my_region,id))
+#print(watcher.league.by_summoner(my_region,id))
 leagueinfoall = watcher.league.by_summoner(my_region,id)
 leagueinfosoloduo = leagueinfoall[0]
 leagueinfoflex = leagueinfoall[1]
 leagueinfotft = leagueinfoall[2]
 print()
-print(leagueinfosoloduo)
+#print(leagueinfosoloduo)
 print()
 #print(type(leagueinfosoloduo))
-mydivision = leagueinfosoloduo.get("tier")
-print(mydivision)
+mydivisionsoloduo = leagueinfosoloduo.get("tier")
+print(mydivisionsoloduo)
 print()
 myrank = leagueinfosoloduo.get("rank")
 print(myrank)
@@ -52,7 +52,7 @@ matchlist = watcher.match.matchlist_by_account(my_region,accountId)
 matches = matchlist.get("matches")
 #print(matches)
 lastgame = matches[0]
-print(lastgame)
+#print(lastgame)
 gameidlastgame = lastgame.get("gameId")
 print(gameidlastgame)
 mychamplastgame = lastgame.get("champion")
@@ -73,26 +73,26 @@ participants = matchinfo.get("participants")
 #print(participants)
 #print(type(participants))
 myinfo = participants[mypartid-1]
-print(myinfo)
+#print(myinfo)
 myteamidlastgame = myinfo.get("teamId")
 print(myteamidlastgame)
 
 teams = matchinfo.get("teams")
-print(teams)
+#print(teams)
 for j in  teams:
 	if myteamidlastgame == j.get("teamId"):
 		winorloselastgame =j.get("win")
-print(winorloselastgame)
-Victory = "Victory"
-Defeat = "Defeat"
+#print(winorloselastgame)
+lastgameVictory = "Victory"
+lastgameDefeat = "Defeat"
 if winorloselastgame == "Win":
 	winlastgame = 1
 else:
 	winlastgame = 0
 if winlastgame == 1:
-	print(Victory)
+	print(lastgameVictory)
 else:
-	print("Defeat")
+	print(lastgameDefeat)
 #print(type(myinfo))
 mystatslastgame = myinfo.get("stats")
 #print(mystatslastgame)
@@ -119,8 +119,22 @@ print(mylaneenemy)
 
 print(participants)
 
+class game():
+    def __init__(self,region,summname):
+        self.region = region
+        self.summname = summname
+        self.me = watcher.summoner.by_name(self.region, self.summname)
+        self.accountId = me.get("accountId")
+        self.id = me.get("id")
 
 
+    def getdivisionsoloduo(self):
+        leagueinfoall = watcher.league.by_summoner(self.region, self.id)
+        leagueinfosoloduo = leagueinfoall[0]
+        mydivisionsoloduo = leagueinfosoloduo.get("tier")
+        return mydivisionsoloduo
+    def getdivisions
 
-
-
+meinletztesgame = game(my_region, summonername)
+getdiv = meinletztesgame.getdivisionsoloduo()
+print(getdiv)
