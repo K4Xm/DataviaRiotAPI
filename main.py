@@ -71,7 +71,7 @@ for i in participantIdentities:
 		mypartid = i.get("participantId")
 participants = matchinfo.get("participants")
 #print(participants)
-#print(type(participants))
+#print(type(participants))a
 myinfo = participants[mypartid-1]
 #print(myinfo)
 myteamidlastgame = myinfo.get("teamId")
@@ -133,8 +133,17 @@ class game():
         leagueinfosoloduo = leagueinfoall[0]
         mydivisionsoloduo = leagueinfosoloduo.get("tier")
         return mydivisionsoloduo
-    def getdivisions
+    def getdivisiontft(self):
+		leagueinfoall = watcher.league.by_summoner(self.region, self.id)
+		leagueinfotft = leagueinfoall[2]
+		mydivisiontft = leagueinfoflex.get("tier")
+		return mydivisiontft
 
 meinletztesgame = game(my_region, summonername)
-getdiv = meinletztesgame.getdivisionsoloduo()
+getdiv = meinletztesgame.getdivisionssoloduo()
+getdivtft = meinletztesgame.getdivisiontft
 print(getdiv)
+
+
+
+
