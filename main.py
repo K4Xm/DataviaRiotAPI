@@ -2,7 +2,7 @@ from riotwatcher import RiotWatcher, ApiError
 
 
 
-watcher = RiotWatcher('RGAPI-14f19f3d-34a1-4e08-abdc-4fac0d1efa3a')
+watcher = RiotWatcher('RGAPI-4563ab61-975c-4a9b-9929-0dbeaf0ebe5e')
 
 my_region = 'euw1'
 
@@ -22,7 +22,19 @@ print(id)
 print()
 #print(watcher.league.by_summoner(my_region,id))
 leagueinfoall = watcher.league.by_summoner(my_region,id)
+print(type(leagueinfoall))
+
+"""
+for l in leagueinfoall:
+    rankedsoloduo = "RANKED_SOLO_5x5"
+    if rankedsoloduo == l.get("queueType"):
+        leagueinfosoloduo = 
+
+"""
+
+
 leagueinfosoloduo = leagueinfoall[0]
+print(type(leagueinfosoloduo))
 leagueinfoflex = leagueinfoall[1]
 leagueinfotft = leagueinfoall[2]
 print()
@@ -78,7 +90,7 @@ matchinfo = watcher.match.by_id(my_region,gameidlastgame)
 #print(type(matchinfo))
 
 participantIdentities = matchinfo.get("participantIdentities")
-#print(participantIdentities)
+print(participantIdentities)
 for i in participantIdentities:
 	player = i.get("player")
 	if summonername == player.get("summonerName"):
