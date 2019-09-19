@@ -2,7 +2,12 @@ from riotwatcher import RiotWatcher, ApiError
 
 
 
-watcher = RiotWatcher('RGAPI-4563ab61-975c-4a9b-9929-0dbeaf0ebe5e')
+
+
+apikeytext = open("DEVELOPMENT API KEY.txt","r+")
+apikey = apikeytext.read()
+
+watcher = RiotWatcher(apikey)
 
 my_region = 'euw1'
 
@@ -22,19 +27,44 @@ print(id)
 print()
 #print(watcher.league.by_summoner(my_region,id))
 leagueinfoall = watcher.league.by_summoner(my_region,id)
+print(leagueinfoall[1])
 print(type(leagueinfoall))
 
-"""
-for l in leagueinfoall:
-    rankedsoloduo = "RANKED_SOLO_5x5"
-    if rankedsoloduo == l.get("queueType"):
-        leagueinfosoloduo = 
+#def ():
+   # for l in leagueinfoall:
+    #    rankedtft = ("RANKED_TFT")
+    #    rankedsoloduo = ("RANKED_SOLO_5x5")
+    #    ranked5vs5 = ("RANKED_FLEX_SR")
+    #    ranked3vs3 = ("RANKED_FLEX_TT")
 
-"""
+
+
+
+
+
+
+for l in leagueinfoall:
+    rankedtft = ("RANKED_TFT")
+    rankedsoloduo = ("RANKED_SOLO_5x5")
+    ranked5vs5 = ("RANKED_FLEX_SR")
+    ranked3vs3 = ("RANKED_FLEX_TT")
+    if rankedtft == l.get("queueType"):
+        tftliste = l
+        print(tftliste)
+    if rankedsoloduo == l.get("queueType"):
+        soloduoliste = l
+        print(soloduoliste)
+    if ranked5vs5 == l.get("queueType"):
+        flex5vs5liste = l
+        print(flex5vs5liste)
+    if ranked3vs3 == l.get("queueType"):
+        flex3vs3liste = l
+        print(flex3vs3liste)
+
+
 
 
 leagueinfosoloduo = leagueinfoall[0]
-print(type(leagueinfosoloduo))
 leagueinfoflex = leagueinfoall[1]
 leagueinfotft = leagueinfoall[2]
 print()
@@ -90,7 +120,7 @@ matchinfo = watcher.match.by_id(my_region,gameidlastgame)
 #print(type(matchinfo))
 
 participantIdentities = matchinfo.get("participantIdentities")
-print(participantIdentities)
+#print(participantIdentities)
 for i in participantIdentities:
 	player = i.get("player")
 	if summonername == player.get("summonerName"):
